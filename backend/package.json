@@ -1,0 +1,15 @@
+{
+  "name": "music-library-backend",
+  "version": "1.0.0",
+  "description": "Express + SQLite backend API for the Music Library full-stack app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

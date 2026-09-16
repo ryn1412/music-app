@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albums</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="navbar__brand" href="index.html"><i class="fa fa-music"></i></a>
+    <ul class="navbar__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="artists.html">Artists</a></li>
+      <li><a href="albums.html" aria-current="page">Albums</a></li>
+      <li><a href="songs.html">Songs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <h1>Albums</h1>
+      <p>Every album belongs to an artist. Deleting the artist removes their albums too.</p>
+    </header>
+
+    <section class="panel">
+      <h2 id="album-form-title">Add an album</h2>
+      <form id="album-form" class="entity-form">
+        <input type="hidden" id="album-id" />
+        <div class="field">
+          <label for="album-name">Album name</label>
+          <input id="album-name" name="album_name" required />
+        </div>
+        <div class="field">
+          <label for="album-artist">Artist</label>
+          <select id="album-artist" required></select>
+        </div>
+        <div class="field">
+          <label for="album-year">Release year</label>
+          <input id="album-year" name="release_year" type="number" min="1900" max="2100" placeholder="2024" />
+        </div>
+        <div class="field">
+          <label for="album-listens">Listens</label>
+          <input id="album-listens" name="number_of_listens" type="number" min="0" placeholder="0" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="album-submit" class="btn-primary">Add album</button>
+          <button type="button" id="album-cancel" class="btn-ghost" hidden>Cancel edit</button>
+        </div>
+      </form>
+      <p id="album-status" class="status" hidden></p>
+    </section>
+
+    <section class="panel">
+      <h2>All albums</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Year</th>
+            <th>Listens</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="albums-tbody">
+          <tr><td colspan="6" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/albums.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Songs — Sonora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="navbar__brand" href="index.html"><i class="fa fa-music"></i></a>
+    <ul class="navbar__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="artists.html">Artists</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="songs.html" aria-current="page">Songs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <h1>Songs</h1>
+      <p>Every song belongs to an album. Deleting the album removes its songs too.</p>
+    </header>
+
+    <section class="panel">
+      <h2 id="song-form-title">Add a song</h2>
+      <form id="song-form" class="entity-form">
+        <input type="hidden" id="song-id" />
+        <div class="field">
+          <label for="song-name">Song name</label>
+          <input id="song-name" name="song_name" required />
+        </div>
+        <div class="field">
+          <label for="song-album">Album</label>
+          <select id="song-album" required></select>
+        </div>
+        <div class="field">
+          <label for="song-year">Release year</label>
+          <input id="song-year" name="release_year" type="number" min="1900" max="2100" placeholder="2024" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="song-submit" class="btn-primary">Add song</button>
+          <button type="button" id="song-cancel" class="btn-ghost" hidden>Cancel edit</button>
+        </div>
+      </form>
+      <p id="song-status" class="status" hidden></p>
+    </section>
+
+    <section class="panel">
+      <h2>All songs</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Album</th>
+            <th>Year</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="songs-tbody">
+          <tr><td colspan="5" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/songs.js"></script>
+</body>
+</html>

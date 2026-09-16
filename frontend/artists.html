@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artists — Sonora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="navbar__brand" href="index.html"><i class="fa fa-music"></i></a>
+    <ul class="navbar__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="artists.html" aria-current="page">Artists</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="songs.html">Songs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <h1>Artists</h1>
+      <p>Add an artist, then attach albums to them from the Albums page.</p>
+    </header>
+
+    <section class="panel">
+      <h2 id="artist-form-title">Add an artist</h2>
+      <form id="artist-form" class="entity-form">
+        <input type="hidden" id="artist-id" />
+        <div class="field">
+          <label for="artist-name">Name</label>
+          <input id="artist-name" name="artist_name" required />
+        </div>
+        <div class="field">
+          <label for="artist-genre">Genre</label>
+          <input id="artist-genre" name="genre" placeholder="e.g. Pop" />
+        </div>
+        <div class="field">
+          <label for="artist-listeners">Monthly listeners</label>
+          <input id="artist-listeners" name="monthly_listeners" type="number" min="0" placeholder="0" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="artist-submit" class="btn-primary">Add artist</button>
+          <button type="button" id="artist-cancel" class="btn-ghost" hidden>Cancel edit</button>
+        </div>
+      </form>
+      <p id="artist-status" class="status" hidden></p>
+    </section>
+
+    <section class="panel">
+      <h2>All artists</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Monthly listeners</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="artists-tbody">
+          <tr><td colspan="5" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/artists.js"></script>
+</body>
+</html>

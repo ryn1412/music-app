@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonora — Music Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="navbar__brand" href="index.html"><i class="fa fa-music"></i></a>
+    <ul class="navbar__links">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="artists.html">Artists</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="songs.html">Songs</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>A small, tidy library for your music.</h1>
+      <p>Sonora catalogues artists, their albums, and every song underneath. It's backed by a real SQLite database, so nothing gets lost between page refreshes.</p>
+      <div class="hero__links">
+        <a href="artists.html">Browse artists</a>
+        <a href="albums.html">Browse albums</a>
+        <a href="songs.html">Browse songs</a>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat__value" id="stat-artists">—</span>
+          <span class="stat__label">Artists catalogued</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value" id="stat-albums">—</span>
+          <span class="stat__label">Albums catalogued</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value" id="stat-songs">—</span>
+          <span class="stat__label">Songs catalogued</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>How it's put together</h2>
+      <p>Every artist can have several albums, and every album its own songs. Delete an artist and their albums and every song on those albums goes with them, so the library never ends up with orphaned records. Use the pages above to add, edit, and remove entries directly against the API.</p>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script>
+    // Grab the three counts for the home page. If the server isn't
+    // running, just show a dash instead of crashing the page.
+    async function loadStats() {
+      try {
+        var artists = await apiGet('/artists');
+        var albums = await apiGet('/albums');
+        var songs = await apiGet('/songs');
+
+        document.getElementById('stat-artists').textContent = artists.length;
+        document.getElementById('stat-albums').textContent = albums.length;
+        document.getElementById('stat-songs').textContent = songs.length;
+      } catch (err) {
+        document.getElementById('stat-artists').textContent = '-';
+        document.getElementById('stat-albums').textContent = '-';
+        document.getElementById('stat-songs').textContent = '-';
+        console.error('Could not reach the API:', err.message);
+      }
+    }
+
+    loadStats();
+  </script>
+</body>
+</html>
