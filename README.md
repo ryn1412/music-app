@@ -1,4 +1,4 @@
-# Music Library (Assignment 5)
+# Music Library
 
 A small full-stack app: Express + SQLite backend, plain HTML/CSS/JS frontend.
 
